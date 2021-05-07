@@ -82,3 +82,12 @@ Type ```pyspark```
 
 Follow this steps on this [post.](https://www.datacamp.com/community/tutorials/installation-of-pyspark) 
 Obs.: Do not maintain your spark folder at downloads folder.
+
+## Other references about Environment
+* https://towardsdatascience.com/how-to-successfully-install-anaconda-on-a-mac-and-actually-get-it-to-work-53ce18025f97
+* https://www.jcchouinard.com/how-to-use-anaconda-environments/
+* https://stackoverflow.com/questions/60416082/pyspark-numpy-not-found-in-cluster-mode-modulenotfounderror
+* https://medium.com/swlh/pyspark-on-macos-installation-and-use-31f84ca61400
+* https://medium.com/@alexandrecastro_20139/de-noob-para-noob-configurando-meu-primeiro-cluster-com-hadoop-spark-pyspark-e-jupyter-notebook-e61062fe3450
+* https://qastack.com.br/programming/30518362/how-do-i-set-the-drivers-python-version-in-spark
+* https://medium.com/@achilleus/get-started-with-pyspark-on-mac-using-an-ide-pycharm-b8cbad7d516f
