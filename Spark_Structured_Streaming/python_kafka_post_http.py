@@ -15,7 +15,7 @@ def send(number_of_events_to_send, url_to_send_events):
         for x in range(0, number_of_events_to_send):
             
             valor_contrato = randrange(1.00, 10500.00, 1.00)
-            valor_contrato = randrange(1, 12, 1)
+            parcelas = randrange(1, 12, 1)
             valor_parcelas = float(valor_contrato/parcelas)
             status = choice(list_status)
             loja = choice(lojas)
@@ -37,8 +37,9 @@ def send(number_of_events_to_send, url_to_send_events):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='simple producer')
     parser.add_argument('-u', '--url', dest='url', type=str)
+    parser.add_argument('-n', '--number_of_events', dest='number_of_events', type=str)
     args = parser.parse_args()
     url_events = args.url
-    parser.add_argument('-n', '--number_of_events', dest='number_of_events', type=str)
+    
     number_of_events = args.number_of_events
-    send(number_of_events, url_events)
+    send(int(number_of_events), url_events)
