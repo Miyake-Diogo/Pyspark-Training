@@ -1,7 +1,6 @@
 from kafka.producer import KafkaProducer
 from kafka.errors import KafkaError
 from random import randrange, choice
-from time import process_time, sleep
 from datetime import datetime
 import argparse
 
@@ -27,7 +26,6 @@ def on_send_error(excp):
 
 
 # produce asynchronously with callbacks
-t1_start = process_time()
 for _ in range(1500):
     valor_contrato = randrange(1.00, 10500.00, 1.00)
     parcelas = randrange(1, 12, 1)
@@ -45,9 +43,3 @@ producer.flush()
 
 # configure multiple retries
 producer = KafkaProducer(retries=5)
-
-t1_stop = process_time()
-print("Total time spending:")
-print("Elapsed time Start main:", t1_start)
-print("Elapsed time Stop main:", t1_stop)
-print("Elapsed time during the whole program in seconds:", (t1_stop - t1_start))
