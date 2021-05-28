@@ -4,7 +4,7 @@ services:
     image: jupyter/all-spark-notebook:latest
     container_name: jupyter_spark_training
     volumes:
-      - /Users/u004247/Documents/_GITHUB/Pyspark_Training/Notebooks:/home/jovyan/notebooks
+      - /Users/u004247/01_VMS_PYTHON/Pyspark-Training/Notebooks:/home/jovyan/notebooks
       
     ports:
       - "8686:8888"

@@ -1,5 +1,4 @@
 from kafka.producer import KafkaProducer
-from kafka.errors import KafkaError
 from random import randrange, choice
 from datetime import datetime
 import argparse
@@ -26,7 +25,7 @@ def on_send_error(excp):
 
 
 # produce asynchronously with callbacks
-for _ in range(1500):
+for _ in range(15):
     valor_contrato = randrange(1.00, 10500.00, 1.00)
     parcelas = randrange(1, 12, 1)
     valor_parcelas = float(valor_contrato/parcelas)
@@ -42,4 +41,4 @@ for _ in range(1500):
 producer.flush()
 
 # configure multiple retries
-producer = KafkaProducer(retries=5)
+#producer = KafkaProducer(retries=5)
