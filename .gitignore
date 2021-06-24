@@ -132,3 +132,6 @@ Notebooks/.ipynb_checkpoints
 *.DS_Store
 
 spark_env
+
+.idea/Pyspark-Training.iml
+.idea/misc.xml
