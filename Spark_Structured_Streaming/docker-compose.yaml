@@ -1,0 +1,75 @@
+version: "3.7"
+services:
+# Jupyter with Pyspark
+# /usr/local/spark/jars add kafka here
+# https://repo.mavenlibs.com/maven/org/apache/spark/spark-sql-kafka-0-10_2.12/3.3.1/spark-sql-kafka-0-10_2.12-3.3.1.jar?utm_source=mavenlibs.com
+  jupyter:
+    image: jupyter/all-spark-notebook:latest
+    container_name: jupyter_spark_training
+    volumes:
+      - /Users/diogomiyake/projects/spark/Pyspark-Training/Notebooks:/home/jovyan/notebooks
+      
+    ports:
+      - "8686:8888"
+    deploy:
+      resources:
+        limits:
+          cpus: '1.00'
+          memory: 1024M
+        reservations:
+          cpus: '1.00'
+          memory: 1024M
+  # Kakfa Services
+  # unfortunelly dont work on M1
+  # zookeeper:
+  #   image: confluentinc/cp-zookeeper:7.0.1
+  #   container_name: zookeeper
+  #   environment:
+  #     ZOOKEEPER_CLIENT_PORT: 2181
+  #     ZOOKEEPER_TICK_TIME: 2000
+  #   # deploy:
+  #   #   resources:
+  #   #     limits:
+  #   #       cpus: '2.00'
+  #   #       memory: 3072M
+  #   #     reservations:
+  #   #       cpus: '1.00'
+  #   #       memory: 2048M
+
+  # broker:
+  #   image: confluentinc/cp-kafka:7.0.1
+  #   container_name: broker
+  #   ports:
+  #   # To learn about configuring Kafka for access across networks see
+  #   # https://www.confluent.io/blog/kafka-client-cannot-connect-to-broker-on-aws-on-docker-etc/
+  #     - "9092:9092"
+  #   depends_on:
+  #     - zookeeper
+  #   environment:
+  #     KAFKA_BROKER_ID: 1
+  #     KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
+  #     KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_INTERNAL:PLAINTEXT
+  #     KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092,PLAINTEXT_INTERNAL://broker:29092
+  #     KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+  #     KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+  #     KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+  #   # deploy:
+  #   #   resources:
+  #   #     limits:
+  #   #       cpus: '2.00'
+  #   #       memory: 3072M
+  #   #     reservations:
+  #   #       cpus: '1.00'
+  #   #       memory: 2048M
+  
+  # # pyspark_shell:
+  # #   image: apache/spark-py:3.3.1
+  # #   container_name: pyspark-shell
+  # #   deploy:
+  # #     resources:
+  # #       limits:
+  # #         cpus: '1.00'
+  # #         memory: 1024M
+  # #       reservations:
+  # #         cpus: '1.00'
+  # #         memory: 2048M

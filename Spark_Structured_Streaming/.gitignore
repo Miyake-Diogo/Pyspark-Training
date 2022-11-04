@@ -136,4 +136,4 @@ spark_env
 .idea/Pyspark-Training.iml
 .idea/misc.xml
 
-.dccache
+.ini

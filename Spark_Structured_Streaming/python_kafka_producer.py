@@ -8,8 +8,11 @@ parser.add_argument('-u', '--url', dest='url', type=str)
 args = parser.parse_args()
 url_events = args.url
 
-list_status = ["aprovada", "cancelada"]
-lojas = ["casa das maquinas", "mercado do seu zé", "vivara joias", "restaurante coma bem", "restaurante tia jumira", "loxinha barata"]
+list_status = ["approved", "cancelled"]
+lojas = ["Machine House", "mister Zé market", "Vicara Jewelry",
+         "Restaurant Eat Good", "Tia Jumira restaurant", "cheap loxinha",
+         "banking of the vest faria limer", "traditional banking with fees",
+         "Charlatan course salesman"]
 now_timestamp = datetime.now()
 
 producer = KafkaProducer(bootstrap_servers=url_events)
@@ -32,8 +35,21 @@ for _ in range(15):
     status = choice(list_status)
     loja = choice(lojas)
 
-    json_data_message = f"""{{"id_compra":{randrange(70000, 99999, 1)},"id_conta":{randrange(0, 10001, 1)},"id_cartao":{randrange(100000, 999999, 1)},"descricao_transacao":"Parcelado com juros - Visa","data_compra":{now_timestamp},"valor":{valor_contrato},"valor_contrato":{valor_contrato},"taxa":5.43,"parcelas":{parcelas},"valor_parcelas":{valor_parcelas},"authorization_code":{randrange(1, 150, 2)},"loja":{loja},"status":{status},"codigo_moeda":986,"mcc":5139}}"""
-    producer.send('evento_compra',json_data_message.encode('utf-8'))\
+    json_data_message = f"""{{
+        "id_purchase":{randrange(70000, 99999, 1)},
+        "id_account":{randrange(0, 10001, 1)},
+        "id_card":{randrange(100000, 999999, 1)},
+        "transaction_description":"installments with tax - Visa",
+        "date":{now_timestamp},
+        "value":{valor_contrato},
+        "contract_value":{valor_contrato},
+        "fee":5.43,"installments":{parcelas},
+        "installments_value":{valor_parcelas},
+        "authorization_code":{randrange(1, 150, 2)},
+        "shop":{loja},"status":{status},
+        "currency_code":986,"mcc":5139
+        }}"""
+    producer.send('event_purchase',json_data_message.encode('utf-8'))\
          .add_callback(on_send_success).add_errback(on_send_error)
     #producer.send('compra', b'msg').add_callback(on_send_success).add_errback(on_send_error)
 

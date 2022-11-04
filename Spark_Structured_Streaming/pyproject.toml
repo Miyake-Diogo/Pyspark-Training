@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "spark_structured_streaming"
+version = "1.0"
+description = "Spark Structured Streaming Python examples"
+authors = ["Diogo Miyake <akio.miyake@live.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+kafka = "^1.3.5"
+confluent-kafka = "^1.9.2"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
